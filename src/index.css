@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #fff;
+  --grey: #bdbcbc;
+  --black: #000;
+  --red-soft: #df5e5e;
+  --red: #d92323;
+  --red-dark: #7a0404;
+  --red-dark-2: #6b0202;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
+  font-family: "Poppins", serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}
