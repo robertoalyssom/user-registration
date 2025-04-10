@@ -2,7 +2,7 @@
 
 This project was developed as part of a tutorial from the DevClub | Programação YouTube channel. It is a React application built with Vite, focused on managing a user list and demonstrates best practices for building scalable React applications.
 
-This is the front-end application of a full-stack project. It interacts with a custom-built back-end API (available here) to provide dynamic data and functionality.
+This is the front-end application of a full-stack project. It interacts with a custom-built back-end API ([available here](https://github.com/robertoalyssom/users.api)) to provide dynamic data and functionality.
 
 ## Table of Contents
 
