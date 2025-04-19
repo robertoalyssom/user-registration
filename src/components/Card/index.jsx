@@ -11,7 +11,12 @@ const Card = (props) => {
   }
 
   return (
-    <div className="card" key={user.id}>
+    <div
+      data-aos="fade-up"
+      data-aos-anchor-placement="center-bottom"
+      className="card"
+      key={user.id}
+    >
       <div className="card-info">
         <p>Name: {user.name}</p>
         <p>Age: {user.age}</p>
