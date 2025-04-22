@@ -23,3 +23,9 @@ body {
   align-items: center;
   padding-top: 2rem;
 }
+
+@media screen and (max-width: 450px) {
+  #root {
+    width: 95%;
+  }
+}

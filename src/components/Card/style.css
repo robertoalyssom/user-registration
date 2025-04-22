@@ -22,3 +22,9 @@
 .btn-edit:hover {
   color: var(--red);
 }
+
+@media screen and (min-width: 2048px) {
+  .card {
+    padding: 1rem 1.5rem;
+  }
+}
