@@ -50,10 +50,12 @@ const Form = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const withoutFormValues = Object.values(formData).some((msg) => msg === "");
+    const messagesList = Object.values(formMessage);
+    const withoutFormValues = messagesList.some((msg) => msg === "");
+    const isFormValid = messagesList.every((msg) => msg === "");
 
-    if (withoutFormValues) {
-      // display form messages for each enpty field.
+    if (withoutFormValues || !isFormValid) {
+      // display form messages for each enpty field or invalid field
       const newMessages = {};
 
       Object.keys(formData).forEach((formKey) => {
