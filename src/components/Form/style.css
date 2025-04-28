@@ -6,8 +6,15 @@
   gap: 1rem;
 }
 
-.form > input,
-.form > button {
+.field-ctn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.field-ctn > input,
+.btn-submit {
   padding: 0.5rem;
   width: 100%;
   border-radius: 20px;
@@ -16,7 +23,7 @@
   background: transparent;
   color: white;
 }
-.form > input::placeholder {
+.field-ctn > input::placeholder {
   color: var(--white);
   opacity: 0.6;
   font-family: "Poppins", serif;
@@ -25,13 +32,13 @@
   font-size: 1rem;
 }
 
-.form > .btn-submit {
+.btn-submit {
   cursor: pointer;
   background-color: var(--red-soft);
   font-weight: bold;
   transition: 0.3s;
 }
 
-.form > .btn-submit:hover {
+.btn-submit:hover {
   background-color: var(--red);
 }
