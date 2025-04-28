@@ -23,11 +23,13 @@ const Card = (props) => {
         <p>Email: {user.email}</p>
       </div>
       <div className="card-btns">
-        <i
-          className="fa-solid fa-pen-to-square btn-edit"
-          id="btn-edit"
-          onClick={handleBtnClick}
-        ></i>
+        <a href="#form-ctn">
+          <i
+            className="fa-solid fa-pen-to-square btn-edit"
+            id="btn-edit"
+            onClick={handleBtnClick}
+          ></i>
+        </a>
         <i
           className="fa-solid fa-trash btn-trash"
           id="btn-trash"

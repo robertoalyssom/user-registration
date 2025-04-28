@@ -15,6 +15,10 @@
   --yellow-soft: #fcdea8;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   min-height: 100vh;
   background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);

@@ -43,7 +43,7 @@ function Home() {
         editedUser={editedUser}
         setEditedUser={setEditedUser}
       >
-        <div className="container-form">
+        <div id="form-ctn" className="container-form">
           <h2>User Registration</h2>
           <Form />
         </div>
