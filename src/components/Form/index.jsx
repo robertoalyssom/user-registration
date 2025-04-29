@@ -50,29 +50,26 @@ const Form = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const messagesList = Object.values(formMessage);
-    const withoutFormValues = messagesList.some((msg) => msg === "");
-    const isFormValid = messagesList.every((msg) => msg === "");
 
-    if (withoutFormValues || !isFormValid) {
-      // display form messages for each enpty field or invalid field
-      const newMessages = {};
+    // validate each form field
+    const newMessages = {};
+    Object.keys(formData).forEach((formKey) => {
+      newMessages[formKey] = validateForm(formData, formKey);
+    });
 
-      Object.keys(formData).forEach((formKey) => {
-        newMessages[formKey] = validateForm(formData, formKey);
-      });
+    setFormMessage(newMessages);
 
-      setFormMessage((prevMessage) => ({
-        ...prevMessage,
-        ...newMessages,
-      }));
-      return;
-    }
+    // check if any field is invalid
+    const messagesList = Object.values(newMessages);
+    const isFormInvalid = messagesList.some((msg) => msg !== "");
+    if (isFormInvalid) return;
 
     setIsGettingUsers(true);
+
     if (editedUser.name) updateUser(formData);
     else createNewUser(formData);
 
+    // reset form
     setFormData(formNamesBlueprint);
     setEditedUser({});
   }
