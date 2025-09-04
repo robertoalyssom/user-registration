@@ -1,65 +1,88 @@
 import "./style.css";
 import { useState, useEffect } from "react";
-import getUsers from "../../services/getUsers";
-import deleteUsers from "../../services/deleteUsers";
-import Form from "../../components/Form";
+import getContacts from "../../services/getContacts.js";
+import deleteContact from "../../services/deleteContact.js";
+import Logout from "../../components/Logout";
+import FormContact from "../../components/forms/ContactForm";
 import Card from "../../components/Card";
-import Loading from "../../components/Loading";
+import Loading from "../../components/ui/Loading";
 import Modal from "../../components/Modal";
-import { FormProvider } from "../../context/FormProvider.jsx";
+import { FormProvider } from "../../context/FormContext/FormProvider.jsx";
+import useAuthContext from "../../context/AuthContext/useAuthContext.js";
 
 function Home() {
-  const [users, setUsers] = useState([]);
-  const [isGettingUsers, setIsGettingUsers] = useState(true);
+  const [contacts, setContacts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editedUser, setEditedUser] = useState({});
+  const [editedContact, setEditedContact] = useState({});
+  const { userToken, userData, setUserData } = useAuthContext();
 
   useEffect(() => {
-    getUsers(setUsers, setIsGettingUsers);
-  }, []);
+    setContacts([]);
 
-  const userCard = users.map((user) => {
-    return (
-      <Card
-        user={user}
-        key={user.id}
-        deleteUser={(id) => deleteUsers(id, setUsers, setIsGettingUsers)}
-        setUsers={setUsers}
-        setEditedUser={(id, newName, newAge, newEmail) =>
-          setEditedUser({ id: id, name: newName, age: newAge, email: newEmail })
-        }
-        setIsGettingUsers={setIsGettingUsers}
-      />
-    );
-  });
+    // Fetch contacts if userToken is available
+    userToken && getContacts(setContacts, setIsLoading);
+    setUserData(userData);
+  }, [userToken]);
+
+  const contactCard =
+    contacts.length > 0 &&
+    contacts.map((contact) => {
+      return (
+        <Card
+          key={contact.id}
+          contact={contact}
+          deleteContact={(id) =>
+            deleteContact({ id, setContacts, setIsLoading })
+          }
+          setEditedContact={(id, newName, newAge, newEmail) =>
+            setEditedContact({
+              id: id,
+              name: newName,
+              age: newAge,
+              email: newEmail,
+            })
+          }
+        />
+      );
+    });
+
+  function takeFirstName(name) {
+    const firstName = name.substring(0, name.indexOf(" "));
+    return !firstName ? name : firstName;
+  }
 
   return (
-    <div className="container">
-      <FormProvider
-        users={users}
-        setUsers={setUsers}
-        setIsModalOpen={setIsModalOpen}
-        setIsGettingUsers={setIsGettingUsers}
-        editedUser={editedUser}
-        setEditedUser={setEditedUser}
-      >
-        <div id="form-ctn" className="container-form">
-          <h2>User Registration</h2>
-          <Form />
-        </div>
-      </FormProvider>
+    <>
+      <Logout />
+      <div className="container">
+        <h2 className="user-welcome">Welcome {takeFirstName(userData.name)}</h2>
+        <FormProvider
+          contacts={contacts}
+          setContacts={setContacts}
+          setIsModalOpen={setIsModalOpen}
+          setIsLoading={setIsLoading}
+          editedContact={editedContact}
+          setEditedContact={setEditedContact}
+        >
+          <div id="form-ctn" className="container-form">
+            <h3>User Registration</h3>
+            <FormContact />
+          </div>
+        </FormProvider>
 
-      {isGettingUsers && <Loading />}
+        {isLoading && <Loading />}
 
-      <div className="container-cards">{userCard}</div>
+        <div className="container-cards">{contactCard}</div>
 
-      {isModalOpen && (
-        <Modal
-          onClose={() => setIsModalOpen(false)}
-          message="This email is already in use. Please try a different one."
-        />
-      )}
-    </div>
+        {isModalOpen && (
+          <Modal
+            onClose={() => setIsModalOpen(false)}
+            message="This email is already in use. Please try a different one."
+          />
+        )}
+      </div>
+    </>
   );
 }
 

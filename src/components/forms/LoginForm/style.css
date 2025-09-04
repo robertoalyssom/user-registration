@@ -1,0 +1,18 @@
+.form__links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.form__links > a {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--white);
+}
+.form__links > a:hover {
+  text-decoration: underline;
+  color: var(--yellow-soft);
+  font-weight: 500;
+}

@@ -1,0 +1,24 @@
+.logout-ctn {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 10px;
+  background-color: var(--red-dark);
+  color: var(--white);
+  padding: 10px 15px;
+  border-radius: 5px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.logout-ctn > button {
+  margin: 0;
+  transition: 0.3s;
+  font-size: 1rem;
+  background: var(--red-dark-2);
+  border: 1px solid var(--red-soft);
+}
+.logout-ctn > button:hover {
+  background-color: var(--red);
+}

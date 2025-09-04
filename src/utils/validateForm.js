@@ -1,28 +1,45 @@
-export function validateForm(formData, inputName) {
-  const { name, age, email } = formData;
+export function validateForm(formData, inputName, inputValue) {
   let message = "";
-
-  if (inputName === "name") message = validateName(name);
-  else if (inputName === "age") message = validateAge(age);
-  else if (inputName === "email") message = validateEmail(email);
+  if (inputValue === "") message = "This field is required.";
+  else if (inputName === "name") message = validateName(formData.name);
+  else if (inputName === "age") message = validateAge(formData.age);
+  else if (inputName === "email") message = validateEmail(formData.email);
+  else if (inputName === "password") message = validatePwd(formData.password);
+  else if (inputName === "repeatPassword")
+    message = validateRepeatPwd(formData);
 
   return message;
 }
 
 function validateName(name) {
-  if (name === "") return "This field is required.";
-  else if (name.length < 3) return "Name must be at least 3 characters.";
+  const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/;
+  if (name.length < 3) return "Name must be at least 3 characters.";
+  else if (name.length > 50) return "Name must be less than 50 characters.";
+  else if (!nameRegex.test(name)) return "Name must contain only letters.";
   else return "";
 }
 
 function validateAge(age) {
-  if (age === "") return "This field is required.";
-  else return "";
+  if (age < 16) return "The contact must be at least 16 years old.";
+  return "";
 }
 
 function validateEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (email === "") return "This field is required.";
-  else if (!emailRegex.test(email)) return "Invalid email address.";
+  if (!emailRegex.test(email)) return "Invalid email address.";
+  else return "";
+}
+
+function validatePwd(password) {
+  const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])/;
+  if (password.length < 7) return "Password must be at least 7 characters.";
+  else if (!regex.test(password))
+    return "Password must contain at least one uppercase letter, one number, and one special character.";
+  else return "";
+}
+
+function validateRepeatPwd(formData) {
+  const { repeatPassword, password } = formData;
+  if (repeatPassword !== password) return "Passwords do not match.";
   else return "";
 }

@@ -1,13 +1,17 @@
 import "./style.css";
+import useAuthContext from "../../context/AuthContext/useAuthContext";
 
 const Card = (props) => {
-  const { user, deleteUser, setEditedUser } = props;
+  const { contact, deleteContact, setEditedContact } = props;
+  const { id, name, age, email } = contact;
+  const { verifyToken } = useAuthContext();
 
-  function handleBtnClick(e) {
+  async function handleBtnClick(e) {
+    await verifyToken();
+
     const btnId = e.target.id;
-    btnId === "btn-trash" && deleteUser(user.id);
-    btnId === "btn-edit" &&
-      setEditedUser(user.id, user.name, user.age, user.email);
+    btnId === "btn-trash" && deleteContact(id);
+    btnId === "btn-edit" && setEditedContact(id, name, age, email);
   }
 
   return (
@@ -15,12 +19,12 @@ const Card = (props) => {
       data-aos="fade-up"
       data-aos-anchor-placement="center-bottom"
       className="card"
-      key={user.id}
+      key={contact.id}
     >
       <div className="card-info">
-        <p>Name: {user.name}</p>
-        <p>Age: {user.age}</p>
-        <p>Email: {user.email}</p>
+        <p>Name: {contact.name}</p>
+        <p>Age: {contact.age}</p>
+        <p>Email: {contact.email}</p>
       </div>
       <div className="card-btns">
         <a href="#form-ctn">

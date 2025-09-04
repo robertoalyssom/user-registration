@@ -1,6 +1,6 @@
 import "./style.css";
 
-const Loading = () => {
+export default function Loading() {
   return (
     <div className="container-loading">
       <img
@@ -9,6 +9,4 @@ const Loading = () => {
       ></img>
     </div>
   );
-};
-
-export default Loading;
+}

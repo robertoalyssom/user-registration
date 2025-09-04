@@ -1,30 +1,18 @@
 import api from "./api";
-import getUsers from "./getUsers";
 
-export default async function createUsers(params) {
-  const {
-    name,
-    age,
-    email,
-    users,
-    setUsers,
-    setIsModalOpen,
-    setIsGettingUsers,
-  } = params;
-
-  const isRepeatedEmail = users.some((user) => user.email === email);
-
-  if (isRepeatedEmail) {
-    setIsModalOpen(true);
-    setIsGettingUsers(false);
-    return;
-  } else {
-    await api.post("/users", {
-      name: name,
-      age: age,
-      email: email,
-    });
+export default async function createUser(formData) {
+  try {
+    const res = await api.post("/auth/signup", formData);
+    return { success: true, data: res.data };
+  } catch (err) {
+    const errorObj = new Error();
+    switch (err.status) {
+      case 409:
+        errorObj.message = "Email already in use!";
+        errorObj.field = "email";
+        throw errorObj;
+      default:
+        throw new Error("Server error!");
+    }
   }
-
-  getUsers(setUsers, setIsGettingUsers);
 }
