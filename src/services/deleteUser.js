@@ -4,8 +4,6 @@ export default async function deleteUser() {
   console.log("Deleting user...");
   try {
     const response = await api.delete("/auth/deleteAccount");
-    console.log(" response", response);
-
     console.log("User deleted successfully");
     return response.data;
   } catch (error) {
