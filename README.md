@@ -1,8 +1,8 @@
 # User Registration
 
-This project was developed as part of a tutorial from the DevClub | Programação YouTube channel. It is a React application built with Vite, focused on managing a user list and demonstrates best practices for building scalable React applications.
+This project is a full-stack Contact Management application built with React and Vite. It allows users to securely sign up, log in, and manage a personal list of contacts. The application demonstrates a complete user authentication flow using JWT and full CRUD (Create, Read, Update, Delete) functionality for contacts.
 
-This is the front-end application of a full-stack project. It interacts with a custom-built back-end API ([available here](https://github.com/robertoalyssom/users.api)) to provide dynamic data and functionality.
+This is the front-end application of a full-stack project. It interacts with a custom-built back-end API ([available here](https://github.com/robertoalyssom/users.api)) to persist user data and handle authentication.
 
 ## Table of Contents
 
@@ -15,27 +15,32 @@ This is the front-end application of a full-stack project. It interacts with a c
 
 ## Overview
 
-This repository contains the source code for a user registration system that leverages modern web development tools and best practices. Its primary aim is to improve the development of applications using React, by providing hands-on experience with Vite, implementing ESLint for code quality, and managing dependencies like Axios for API interactions.
+This project is a full-stack Contact Management application built with React and Vite. It allows users to securely sign up, log in, and manage a personal list of contacts. The application demonstrates a complete user authentication flow using JWT and full CRUD (Create, Read, Update, Delete) functionality for contacts.
 
 The application includes:
 
-- A **Home** page (see `src/pages/Home/index.jsx`) which serves as an entry point for users.
-- An intuitive user interface designed to simplify user registration.
-- Lightweight configuration to speed up both development and production builds.
+- A **Registration** page (`Sigup`) for new users to sign up.
+- A **Login** page for existing users to authenticate.
+- **Home** page displays a list of all registered users and allows the logged-in user to delete their own account.
+- Global state management for user authentication using React Context.
+- Authenticated API requests using Axios interceptors to automatically include the JWT.
 
 ## Features
 
 - **User Registration:** A simple and clean interface for user sign-up.
-- **Modern Tooling:** Built with Vite for fast development and efficient production builds.
-- **React Powered:** Utilizes the latest React features ensuring a modular and maintainable codebase.
-- **API Integration:** Uses Axios to handle asynchronous HTTP requests.
-- **Code Quality:** Integrated ESLint configurations to enforce coding standards and prevent common pitfalls.
+- **Authentication:** Secure user login and logout functionality using JSON Web Tokens (JWT).
+- **User Management:** After logging in, users can view a list of all users and have the option to delete their own account.
+- **Authenticated API Integration:** Uses Axios with interceptors to automatically attach the authentication token to protected API requests.
+- **Modern Tooling:** Built with Vite for a fast development server and efficient production builds.
+- **Declarative Routing:** Utilizes React Router DOM to manage application routes.
+- **Code Quality:** Integrated ESLint to enforce coding standards and prevent common errors.
 
 ## Technologies Used
 
 - **[React](https://reactjs.org/)** (v19.0.0): Frontend library for building user interfaces.
 - **[Vite](https://vitejs.dev/)** (v6.1.0): Fast build tool and development server.
 - **[Axios](https://axios-http.com/):** Promise-based HTTP client for interacting with backend APIs.
+- **[React Router DOM](https://reactrouter.com/):** For handling routing within the application.
 - **[ESLint](https://eslint.org/):** Pluggable linting utility to help keep code clean and consistent.
 
 ## Installation
@@ -69,18 +74,34 @@ npm run dev
 
 ```
 user-registration/
-├── node_modules/              # Project dependencies
-├── public/                    # Public assets and index.html
-├── src/                       # Source code of the application
-│   ├── assets/                # Images, icons, and static assets
-│   ├── components/            # Reusable UI components
-│   ├── context/               # React context providers for global state
-│   ├── pages/                 # Application pages
-│   │   └── Home/
-│   │       └── index.jsx      # Home page component
-│   ├── services/              # API service modules (e.g., Axios calls)
-│   └── main.jsx               # Application entry point
-├── .eslintrc.js               # ESLint configuration
+├── public/                    # Static assets
+└── src/
+    ├── assets/                # Images, icons, etc.
+    ├── components/            # Reusable UI components
+    │   ├── Forms/             # Form-specific components (LoginForm, SignupForm)
+    │   ├── Modal/             # Reusable Modal component
+    │   └── ui/                # General-purpose UI elements (buttons, inputs)
+    ├── context/               # React Context providers for global state
+    │   ├── AuthContext/       # Manages user authentication state and logic
+    │   |── FormContext/       # Distributes and manages form state and actions
+    |   |── ServerErrorMsgC... # Manages server error messages
+    ├── hooks/                 # Custom React hooks for shared logic
+    ├── pages/                 # Application pages/views
+    │   ├── Home/              # Main dashboard page for authenticated users
+    │   ├── Login/             # Login page
+    │   └── Signup/            # User registration page
+    ├── routes/
+    │   └── PrivateRoute.jsx   # Component to protect routes that require authentication
+    ├── services/              # Modules for interacting with the back-end API
+    │   ├── api.js             # Axios instance configuration and interceptors
+    │   ├── login.js           # API call for user login
+    │   ├── createUser.js      # API call for user registration
+    │   └── ...                # Other specific API call modules
+    ├── utils/                 # Utility functions (e.g., form validation)
+    ├── app.jsx                # Main application component with router setup
+    ├── main.jsx               # Application entry point
+    └── index.css              # Global styles
+├── .gitignore                 # Git ignore file
 ├── package.json               # Project metadata and dependencies
 └── vite.config.js             # Vite configuration
 ```
