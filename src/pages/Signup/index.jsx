@@ -15,10 +15,12 @@ export default function Signup() {
   }
 
   return (
-    <PageContainer title="User Registration" subtitle="Sign up">
-      <SignupForm setIsLoading={setIsLoading} />
+    <main className="main-signup">
+      <PageContainer title="User Registration" subtitle="Sign up">
+        <SignupForm setIsLoading={setIsLoading} />
 
-      {isLoading && <Loading />}
-    </PageContainer>
+        {isLoading && <Loading />}
+      </PageContainer>
+    </main>
   );
 }

@@ -1,0 +1,9 @@
+.main-signup {
+  width: 400px;
+}
+
+@media screen and (min-width: 2048px) {
+  .main-signup {
+    width: 600px;
+  }
+}

@@ -4,10 +4,41 @@
   align-items: center;
   width: 100%;
   padding: 0.5rem;
-  background-color: var(--red-dark-2);
+  background-color: transparent;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  margin-bottom: 1.1rem;
   color: var(--white);
+  position: relative;
+}
+/* This background functions as a border */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: var(--gradient-red-orange-grey);
+  border-radius: 10px;
+  z-index: 0;
+}
+/* This is like a cover */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: -1px; /* moves away from `::before`, setting border thickness */
+  background: linear-gradient(
+    140deg,
+    var(--red-dark-2) 10%,
+    var(--black) 70%
+  ); /* a dark background or another gradient */
+  border-radius: 7px; /* = .card radius (10px) – thickness (3px) */
+  z-index: 1;
+}
+
+.card > * {
+  position: relative;
+  z-index: 2; /* to stay above the `::after` */
 }
 
 .btn-trash,
@@ -15,12 +46,12 @@
   color: var(--red-soft);
   font-size: 1.3rem;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.4s;
   margin-left: 0.7rem;
 }
 .btn-trash:hover,
 .btn-edit:hover {
-  color: var(--red);
+  color: var(--grey);
 }
 
 @media screen and (min-width: 2048px) {

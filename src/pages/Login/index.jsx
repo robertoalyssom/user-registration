@@ -8,10 +8,12 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <PageContainer title="User Registration" subtitle="Log in">
-      <LoginForm setIsLoading={setIsLoading} />
+    <main className="main-login">
+      <PageContainer subtitle="Log in">
+        <LoginForm setIsLoading={setIsLoading} />
 
-      {isLoading && <Loading />}
-    </PageContainer>
+        {isLoading && <Loading />}
+      </PageContainer>
+    </main>
   );
 }

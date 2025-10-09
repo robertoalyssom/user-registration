@@ -22,9 +22,15 @@ const Card = (props) => {
       key={contact.id}
     >
       <div className="card-info">
-        <p>Name: {contact.name}</p>
-        <p>Age: {contact.age}</p>
-        <p>Email: {contact.email}</p>
+        <p>
+          <strong>Name:</strong> {contact.name}
+        </p>
+        <p>
+          <strong>Age:</strong> {contact.age}
+        </p>
+        <p>
+          <strong>Email:</strong> {contact.email}
+        </p>
       </div>
       <div className="card-btns">
         <a href="#form-ctn">

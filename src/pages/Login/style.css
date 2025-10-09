@@ -1,0 +1,15 @@
+.main-login {
+  width: 400px;
+}
+
+@media screen and (max-width: 450px) {
+  .main-login {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 2048px) {
+  .main-login {
+    width: 600px;
+  }
+}

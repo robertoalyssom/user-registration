@@ -25,6 +25,7 @@
 }
 .delete-account_btn:hover {
   color: var(--white);
+  border-color: var(--white);
 }
 
 .logout-btn {

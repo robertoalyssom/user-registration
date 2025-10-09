@@ -8,11 +8,13 @@
   --white: #fff;
   --grey: #bdbcbc;
   --black: #000;
-  --red-soft: #df5e5e;
+  --black-grey-dark: #1c1c1c;
+  --red-soft: #ee4f4f;
   --red: #d92323;
   --red-dark: #7a0404;
-  --red-dark-2: #520101;
+  --red-dark-2: #380101;
   --yellow-soft: #fcdea8;
+  --gradient-red-orange-grey: linear-gradient(45deg, #b22222, #ff4500, #a9a9a9);
 }
 
 html {
@@ -21,12 +23,17 @@ html {
 
 body {
   min-height: 100vh;
-  background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
+  background: linear-gradient(
+    140deg,
+    var(--red-dark) 0%,
+    var(--red-dark-2) 50%,
+    var(--black-grey-dark) 100%
+  );
   font-family: "Poppins", serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 2rem;
+  padding: 2rem 0 2rem 0;
   z-index: 1;
 }
 

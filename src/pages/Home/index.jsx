@@ -9,6 +9,7 @@ import Loading from "../../components/ui/Loading";
 import Modal from "../../components/Modal";
 import { FormProvider } from "../../context/FormContext/FormProvider.jsx";
 import useAuthContext from "../../context/AuthContext/useAuthContext.js";
+import PageContainer from "../../components/ui/PageContainer/index.jsx";
 
 function Home() {
   const [contacts, setContacts] = useState([]);
@@ -54,34 +55,38 @@ function Home() {
 
   return (
     <>
-      <Logout />
-      <div className="container">
-        <h2 className="user-welcome">Welcome {takeFirstName(userData.name)}</h2>
-        <FormProvider
-          contacts={contacts}
-          setContacts={setContacts}
-          setIsModalOpen={setIsModalOpen}
-          setIsLoading={setIsLoading}
-          editedContact={editedContact}
-          setEditedContact={setEditedContact}
-        >
-          <div id="form-ctn" className="container-form">
-            <h3>User Registration</h3>
-            <FormContact />
-          </div>
-        </FormProvider>
+      <main className="main-home">
+        <Logout />
+        <div className="main-form-ctn">
+          <h2 className="user-welcome">
+            Welcome {takeFirstName(userData.name)}
+          </h2>
+          <PageContainer>
+            <FormProvider
+              contacts={contacts}
+              setContacts={setContacts}
+              setIsModalOpen={setIsModalOpen}
+              setIsLoading={setIsLoading}
+              editedContact={editedContact}
+              setEditedContact={setEditedContact}
+            >
+              <FormContact />
+            </FormProvider>
+          </PageContainer>
+        </div>
 
         {isLoading && <Loading />}
 
         <div className="container-cards">{contactCard}</div>
+      </main>
 
-        {isModalOpen && (
-          <Modal
-            onClose={() => setIsModalOpen(false)}
-            message="This email is already in use. Please try a different one."
-          />
-        )}
-      </div>
+      {isModalOpen && (
+        <Modal
+          onClose={() => setIsModalOpen(false)}
+          message="This email is already in use. Please try a different one."
+        />
+      )}
+      {/* </div> */}
     </>
   );
 }
