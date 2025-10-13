@@ -43,8 +43,8 @@ export default function AuthProvider({ children }) {
 
   const login = () => setIsAuthenticated(true); // this function log in user
   const logout = () => {
-    setIsAuthenticated(false); // log out user
     setUserToken("");
+    setIsAuthenticated(false); // log out user
   };
 
   return (
