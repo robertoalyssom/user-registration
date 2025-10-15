@@ -6,9 +6,9 @@ import deleteUser from "../../services/deleteUser.js";
 export default function Logout() {
   const { logout } = useAuthContext();
 
-  function handleLogout() {
-    logoutUser();
-    logout();
+  async function handleLogout() {
+    const loggedOut = await logoutUser();
+    if (loggedOut) logout();
   }
 
   async function handleDeleteAccount() {
