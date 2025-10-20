@@ -11,6 +11,7 @@ export default function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userToken, setUserToken] = useState("");
   const [userData, setUserData] = useState({});
+  const [isLoadingData, setIsLoadingData] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,16 +33,18 @@ export default function AuthProvider({ children }) {
         setUserToken("");
         setUserData({});
         logout();
+        setIsLoadingData(false);
         return;
       }
       setUserToken(data.token);
       setUserData(data.user);
+      setIsLoadingData(false);
     } catch (error) {
       console.error("Token verification failed:", error);
     }
   }
 
-  const login = () => setIsAuthenticated(true); // this function log in user
+  const login = () => setIsAuthenticated(true);
   const logout = () => {
     setUserToken("");
     setIsAuthenticated(false); // log out user
@@ -58,6 +61,7 @@ export default function AuthProvider({ children }) {
         userData,
         setUserData,
         verifyToken,
+        isLoadingData,
       }}
     >
       {children}

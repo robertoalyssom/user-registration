@@ -5,7 +5,7 @@ import deleteContact from "../../services/deleteContact.js";
 import Logout from "../../components/Logout";
 import FormContact from "../../components/forms/ContactForm";
 import Card from "../../components/Card";
-import Loading from "../../components/ui/Loading";
+import LoadingSpinner from "../../components/ui/LoadingSpinner";
 import Modal from "../../components/Modal";
 import { FormProvider } from "../../context/FormContext/FormProvider.jsx";
 import useAuthContext from "../../context/AuthContext/useAuthContext.js";
@@ -75,7 +75,7 @@ function Home() {
           </PageContainer>
         </div>
 
-        {isLoading && <Loading />}
+        {isLoading && <LoadingSpinner />}
 
         <div className="container-cards">{contactCard}</div>
       </main>

@@ -2,7 +2,7 @@ import "./style.css";
 import { useState } from "react";
 import PageContainer from "../../components/ui/PageContainer";
 import LoginForm from "../../components/forms/LoginForm";
-import Loading from "../../components/ui/Loading";
+import LoadingSpinner from "../../components/ui/LoadingSpinner";
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +12,7 @@ export default function Login() {
       <PageContainer subtitle="Log in">
         <LoginForm setIsLoading={setIsLoading} />
 
-        {isLoading && <Loading />}
+        {isLoading && <LoadingSpinner />}
       </PageContainer>
     </main>
   );

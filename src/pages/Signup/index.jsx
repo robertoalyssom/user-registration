@@ -2,7 +2,7 @@ import "./style.css";
 import { useState } from "react";
 import SignupForm from "../../components/forms/SignupForm";
 import PageContainer from "../../components/ui/PageContainer";
-import Loading from "../../components/ui/Loading";
+import LoadingSpinner from "../../components/ui/LoadingSpinner";
 import { Navigate } from "react-router";
 import useAuthContext from "../../context/AuthContext/useAuthContext";
 
@@ -19,7 +19,7 @@ export default function Signup() {
       <PageContainer title="User Registration" subtitle="Sign up">
         <SignupForm setIsLoading={setIsLoading} />
 
-        {isLoading && <Loading />}
+        {isLoading && <LoadingSpinner />}
       </PageContainer>
     </main>
   );

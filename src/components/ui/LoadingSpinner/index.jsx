@@ -1,6 +1,6 @@
 import "./style.css";
 
-export default function Loading() {
+export default function LoadingSpinner() {
   return (
     <div className="container-loading">
       <img
